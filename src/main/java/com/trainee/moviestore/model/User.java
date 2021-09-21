@@ -19,6 +19,6 @@ public class User {
 
     @Column(name = "")
     @Enumerated(EnumType.STRING)
-    @OneToMany
+    @OneToMany(mappedBy = "user")
     private Role role;
 }

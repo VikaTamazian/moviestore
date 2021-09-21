@@ -21,8 +21,7 @@ public class Movie {
     @Column(name = "")
     private int rating;
 
-    @OneToMany
-    @JoinColumn(name = "id")
+    @OneToMany(mappedBy = "movie")
     private List<Genre> genre;
 
     @Column(name = "")
