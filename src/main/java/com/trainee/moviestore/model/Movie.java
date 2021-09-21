@@ -2,27 +2,35 @@ package com.trainee.moviestore.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "")
-    private long movieId;
+    private long id;
+
+    @Column(name = "")
+    private String movieName;
+
     @Column(name = "")
     private String poster;
+
     @Column(name = "")
-    private double rating;
-    @Column(name = "")
-    private String genre;
+    private int rating;
+
+    @OneToMany
+    @JoinColumn(name = "id")
+    private List<Genre> genre;
+
     @Column(name = "")
     private String overview;
+
     @Column(name = "")
     private String creator;
+
     @Column(name = "")
     private String cast;
 
