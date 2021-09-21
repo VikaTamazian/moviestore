@@ -12,10 +12,6 @@ public class Profile {
     @Column(name = "")
     private long id;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private User user;
-
     @Column(name = "")
     private String firstName;
 
