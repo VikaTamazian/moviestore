@@ -17,6 +17,9 @@ public class User {
     @Column(name = "")
     private String password;
 
+    @OneToOne(mappedBy = "user")
+    private Profile profile;
+
     @Column(name = "")
     @Enumerated(EnumType.STRING)
     @OneToMany(mappedBy = "user")
