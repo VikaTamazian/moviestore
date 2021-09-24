@@ -1,0 +1,57 @@
+CREATE
+IF NOT EXISTS role(
+id SERIAL PRIMARY KEY ,
+name VARCHAR (45)
+);
+
+CREATE
+IF NOT EXISTS user (
+id BIGSERIAL PRIMARY KEY ,
+username VARCHAR (45) NOT NULL ,
+password VARCHAR (45) NOT NULL ,
+role INTEGER REFERENCES role (id) NOT NULL
+);
+
+CREATE
+IF NOT EXISTS profile (
+id BIGSERIAL PRIMARY KEY ,
+user_id INTEGER REFERENCES user(id) NOT NULL,
+firstname VARCHAR (45) NOT NULL ,
+lastname VARCHAR (45) NOT NULL ,
+created TIMESTAMP ,
+updated TIMESTAMP
+);
+
+CREATE
+IF NOT EXISTS genre (
+id SERIAL PRIMARY KEY ,
+name VARCHAR (45) NOT NULL ,
+external_id INTEGER ,
+);
+
+CREATE
+IF NOT EXISTS movie(
+id BIGERIAL PRIMARY KEY ,
+adult TINYINT NOT NULL ,
+backdrop_path VARCHAR (256) ,
+genre INTEGER REFERENCES genre(id) NOT NULL,
+language VARCHAR (45) ,
+title VARCHAR (45) ,
+overview VARCHAR (45)
+);
+
+CREATE
+IF NOT EXISTS status(
+id SERIAL PRIMARY KEY ,
+name_status VARCHAR (45) ,
+);
+
+CREATE
+IF NOT EXISTS user_movie(
+movie_id BIGSERIAL NOT NULL REFERENCES movie (id) NOT NULL ,
+user_id BIGSERIAL NOT NULL REFERENCES user (id) NOT NULL ,
+rating INTEGER ,
+created TIMESTAMP ,
+updated TIMESTAMP ,
+status INTEGER REFERENCES status (id) NOT NULL
+);
