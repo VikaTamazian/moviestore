@@ -1,14 +1,24 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id "io.freefair.lombok" version "6.2.0"
 	id 'java'
-	id 'war'
 }
 
-group = 'com.trainee'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '15'
+compileJava {
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+}
+
+jar {
+	manifest {
+		attributes (
+				'Manifest-Version': '1.0.1',
+				'Main-Class' : 'MoviestoreApplication',
+				'Manifest-Name': 'moviestore'
+		)
+
+	}
+}
 
 repositories {
 	mavenCentral()
@@ -16,12 +26,14 @@ repositories {
 
 dependencies {
 
+	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.flywaydb:flyway-core'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+	compileOnly 'org.projectlombok:lombok:1.18.20'
 	runtimeOnly 'org.postgresql:postgresql'
-	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
