@@ -1,6 +1,3 @@
-DROP SCHEMA IF EXISTS public;
-CREATE SCHEMA IF NOT EXISTS public;
-
 CREATE TABLE
     IF NOT EXISTS roles(
                            id SERIAL NOT NULL ,
