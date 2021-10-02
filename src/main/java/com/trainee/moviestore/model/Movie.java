@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "movies")
-public class Movies {
+public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -27,7 +27,7 @@ public class Movies {
             joinColumns = @JoinColumn(name = "movie_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id")
     )
-    private List<Genres> genres;
+    private List<Genre> genres;
 
     @Column(name = "language")
     private String language;
@@ -38,7 +38,7 @@ public class Movies {
     @Column(name = "overview")
     private String overview;
 
-    @OneToMany(mappedBy = "movies")
+    @OneToMany(mappedBy = "movie")
     private Set<UserMovie> userMovies;
 
 }

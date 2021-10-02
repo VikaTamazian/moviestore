@@ -1,10 +1,8 @@
 package com.trainee.moviestore.model;
 
 import lombok.Data;
-import org.springframework.data.convert.Jsr310Converters;
 
 import javax.persistence.*;
-import java.lang.annotation.Target;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -17,15 +15,6 @@ public class UserMovie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
-
-    @Column(name = "user_id")
-    private long userId;
-
-    @Column(name = "movie_id")
-    private long movieId;
-
-    @Column(name = "status_id")
-    private long statusId;
 
     @Column(name = "description")
     private String description;
@@ -41,13 +30,13 @@ public class UserMovie {
 
     @ManyToOne
     @JoinColumn(name = "movie_id")
-    private Movies movie;
+    private Movie movie;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "status_id")
-    private Statuses status;
+    private Status status;
 }
