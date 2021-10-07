@@ -3,12 +3,13 @@ package com.trainee.moviestore.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "genres")
-public class Genre {
+@Table(name = "statuses")
+public class Status {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,10 +18,7 @@ public class Genre {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "external_id")
-    private long external_id;
-
-    @ManyToMany(mappedBy = "genres")
-    private List<Movie> movies;
+    @OneToMany(mappedBy = "status")
+    private Set<UserMovie> userMovies;
 
 }

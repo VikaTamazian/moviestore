@@ -4,34 +4,41 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Data
+@Entity
+@Table(name = "movies")
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "")
-    private String movieName;
+    @Column(name = "adult")
+    private boolean adult;
 
-    @Column(name = "")
-    private String poster;
+    @Column(name = "backdrop_path")
+    private String backdropPath;
 
-    @Column(name = "")
-    private int rating;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "movie_genres",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id")
+    )
+    private List<Genre> genres;
 
-    @OneToMany(mappedBy = "movie")
-    private List<Genre> genre;
+    @Column(name = "language")
+    private String language;
 
-    @Column(name = "")
+    @Column(name = "title")
+    private String title;
+
+    @Column(name = "overview")
     private String overview;
 
-    @Column(name = "")
-    private String creator;
-
-    @Column(name = "")
-    private String cast;
-
+    @OneToMany(mappedBy = "movie")
+    private Set<UserMovie> userMovies;
 
 }

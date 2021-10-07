@@ -3,30 +3,34 @@ package com.trainee.moviestore.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Data
+@Entity
+@Table(name = "profiles")
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "")
+    @Column(name = "id")
     private long id;
 
+<<<<<<< HEAD
     @Column(name = "")
+=======
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(name = "firstname")
+>>>>>>> mod
     private String firstName;
 
-    @Column(name = "")
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name = "")
-    private String region;
+    @Column(name = "created_timestamp")
+    private LocalDateTime created;
 
-    @Column(name = "")
-    private String language;
-
-    @Column(name = "")
-    private Timestamp created;
-
-    @Column(name = "")
-    private Timestamp updated;
+    @Column(name = "updated_timestamp")
+    private LocalDateTime updated;
 }
