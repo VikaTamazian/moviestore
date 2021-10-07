@@ -34,4 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<UserMovie> userMovies;
 
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private Profile profile;
+
 }

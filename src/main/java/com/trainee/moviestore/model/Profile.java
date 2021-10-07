@@ -14,8 +14,8 @@ public class Profile {
     @Column(name = "id")
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "firstname")
