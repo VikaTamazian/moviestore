@@ -20,13 +20,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-<<<<<<< HEAD
-    @OneToOne(mappedBy = "user")
-    private Profile profile;
-
-    @Column(name = "")
-    @Enumerated(EnumType.STRING)
-=======
     @Column(name = "email")
     private String email;
 
@@ -38,7 +31,6 @@ public class User {
     )
     private Set<Role> roles;
 
->>>>>>> mod
     @OneToMany(mappedBy = "user")
     private Set<UserMovie> userMovies;
 

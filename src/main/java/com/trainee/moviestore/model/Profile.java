@@ -14,15 +14,11 @@ public class Profile {
     @Column(name = "id")
     private long id;
 
-<<<<<<< HEAD
-    @Column(name = "")
-=======
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "firstname")
->>>>>>> mod
     private String firstName;
 
     @Column(name = "lastname")
