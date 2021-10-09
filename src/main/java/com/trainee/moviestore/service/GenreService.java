@@ -19,26 +19,27 @@ public class GenreService implements AbstractService<Genre, Long> {
 
     @Override
     public Genre create(Genre model) {
-        return null;
+        return genreRepository.save(model);
     }
 
     @Override
     public List<Genre> getAll() {
-        return null;
+        return genreRepository.findAll();
     }
 
     @Override
     public Genre findById(Long value) {
-        return null;
+        return genreRepository.findById(value).get();
     }
 
     @Override
     public void update(Genre model) {
+        genreRepository.save(model);
 
     }
 
     @Override
     public void delete(Long value) {
-
+        genreRepository.deleteById(value);
     }
 }
