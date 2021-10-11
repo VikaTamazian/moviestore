@@ -1,41 +1,37 @@
 plugins {
-	id 'org.springframework.boot' version '2.5.4'
-	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 compileJava {
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 }
-
-jar {
-	manifest {
-		attributes (
-				'Manifest-Version': '1.0.1',
-				'Main-Class' : 'MoviestoreApplication',
-				'Manifest-Name': 'moviestore'
-		)
-
-	}
+bootJar {
+    manifest {
+        attributes 'Start-Class': 'com.trainee.moviestore.MoviestoreApplication'
+    }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
 
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	//implementation 'org.flywaydb:flyway-core'
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-	runtimeOnly 'org.postgresql:postgresql'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.security:spring-security-test'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa',
+            'org.springframework.boot:spring-boot-starter-security',
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.flywaydb:flyway-core')
+
+    runtimeOnly 'com.h2database:h2:1.4.200'
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    runtimeOnly 'org.postgresql:postgresql'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }
