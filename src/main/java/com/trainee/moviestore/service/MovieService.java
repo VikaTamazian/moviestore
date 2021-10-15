@@ -33,8 +33,8 @@ public class MovieService implements AbstractService<Movie, Long> {
     }
 
     @Override
-    public void update(Movie model) {
-        movieRepository.save(model);
+    public Movie update(Movie model) {
+        return movieRepository.save(model);
     }
 
     @Override

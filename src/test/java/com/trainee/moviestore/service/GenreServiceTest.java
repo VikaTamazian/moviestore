@@ -36,10 +36,9 @@ class GenreServiceTest {
     @Test
     void findByIdTest() {
         Genre genre = new Genre();
-        long id = 2L;
         when(genreRepository.findById(any(Long.class))).thenReturn(Optional.of(genre));
-        assertNotNull(genreService.findById(id));
-        verify(genreRepository, times(1)).findById(id);
+        assertEquals(genre, genreService.findById(anyLong()));
+        verify(genreRepository, times(1)).findById(anyLong());
     }
 
 
@@ -57,7 +56,7 @@ class GenreServiceTest {
     void updateTest() {
         Genre genre = new Genre();
         when(genreRepository.save(any(Genre.class))).thenReturn(genre);
-        genreService.update(genre);
+        assertEquals(genre, genreService.update(genre));
         verify(genreRepository, times(1)).save(genre);
 
     }

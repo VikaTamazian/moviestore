@@ -33,8 +33,8 @@ public class GenreService implements AbstractService<Genre, Long> {
     }
 
     @Override
-    public void update(Genre model) {
-        genreRepository.save(model);
+    public Genre update(Genre model) {
+        return genreRepository.save(model);
 
     }
 

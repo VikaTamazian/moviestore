@@ -33,8 +33,8 @@ public class ProfileService implements AbstractService<Profile, Long> {
     }
 
     @Override
-    public void update(Profile model) {
-        profileRepository.save(model);
+    public Profile update(Profile model) {
+        return profileRepository.save(model);
     }
 
     @Override

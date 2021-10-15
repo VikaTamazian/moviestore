@@ -33,8 +33,8 @@ public class UserService implements AbstractService<User, Long> {
     }
 
     @Override
-    public void update(User model) {
-        userRepository.save(model);
+    public User update(User model) {
+        return userRepository.save(model);
     }
 
     @Override

@@ -33,8 +33,8 @@ public class UserMovieService implements AbstractService<UserMovie, Long> {
     }
 
     @Override
-    public void update(UserMovie model) {
-        userMovieRepository.save(model);
+    public UserMovie update(UserMovie model) {
+        return userMovieRepository.save(model);
     }
 
     @Override
