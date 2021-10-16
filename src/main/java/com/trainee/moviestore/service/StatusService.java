@@ -33,8 +33,8 @@ public class StatusService implements AbstractService<Status, Long> {
     }
 
     @Override
-    public void update(Status model) {
-        statusRepository.save(model);
+    public Status update(Status model) {
+        return statusRepository.save(model);
     }
 
     @Override

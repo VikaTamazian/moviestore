@@ -9,7 +9,7 @@ public interface AbstractService<T, V> {
 
     T findById(V value);
 
-    void update(T model);
+    T update(T model);
 
     void delete(V value);
 }

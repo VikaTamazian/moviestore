@@ -33,8 +33,8 @@ public class RoleService implements AbstractService<Role, Long> {
     }
 
     @Override
-    public void update(Role model) {
-        roleRepository.save(model);
+    public Role update(Role model) {
+        return roleRepository.save(model);
     }
 
     @Override
