@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.5.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
+    id "io.swagger.core.v3.swagger-gradle-plugin" version "2.1.11"
 }
 
 compileJava {
@@ -20,10 +21,11 @@ repositories {
 
 dependencies {
 
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa',
-            'org.springframework.boot:spring-boot-starter-security',
-            'org.springframework.boot:spring-boot-starter-web',
-            'org.flywaydb:flyway-core')
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.flywaydb:flyway-core'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.4.6'
 
     runtimeOnly 'com.h2database:h2:1.4.200'
     compileOnly 'org.projectlombok:lombok:1.18.20'
