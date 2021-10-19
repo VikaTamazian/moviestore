@@ -23,4 +23,15 @@ public class Genre {
     @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExternal_id(long external_id) {
+        this.external_id = external_id;
+    }
 }

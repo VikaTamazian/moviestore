@@ -27,15 +27,16 @@ class GenreServiceTest {
 
     @Test
     void createTest() {
-        Genre genre = new Genre();
+        Genre genre = createNew();
         when(genreRepository.save(any(Genre.class))).thenReturn(genre);
         assertNotNull(genreService.create(genre));
-        verify(genreRepository, times(1)).save(genre);
+        assertEquals(genre, genreService.create(genre));
+        verify(genreRepository, times(2)).save(genre);
     }
 
     @Test
     void findByIdTest() {
-        Genre genre = new Genre();
+        Genre genre = createNew();
         when(genreRepository.findById(any(Long.class))).thenReturn(Optional.of(genre));
         assertEquals(genre, genreService.findById(anyLong()));
         verify(genreRepository, times(1)).findById(anyLong());
@@ -44,17 +45,18 @@ class GenreServiceTest {
 
     @Test
     void getAllTest() {
-        Genre genre1 = new Genre();
-        Genre genre2 = new Genre();
+        Genre genre1 = createNew();
+        Genre genre2 = createNew();
         List<Genre> genres = Arrays.asList(genre1, genre2);
         when(genreRepository.findAll()).thenReturn(genres);
         assertEquals(2, genreService.getAll().size());
-        verify(genreRepository, times(1)).findAll();
+        assertEquals(genres, genreService.getAll());
+        verify(genreRepository, times(2)).findAll();
     }
 
     @Test
     void updateTest() {
-        Genre genre = new Genre();
+        Genre genre = createNew();
         when(genreRepository.save(any(Genre.class))).thenReturn(genre);
         assertEquals(genre, genreService.update(genre));
         verify(genreRepository, times(1)).save(genre);
@@ -67,6 +69,14 @@ class GenreServiceTest {
         genreService.delete(id);
         verify(genreRepository, times(1)).deleteById(id);
 
+    }
+
+    private Genre createNew() {
+        Genre genre = new Genre();
+        genre.setId(1L);
+        genre.setName("somename");
+        genre.setExternal_id(2L);
+        return genre;
     }
 
 }
