@@ -12,7 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreController {
 
-    final GenreService genreService;
+    private final GenreService genreService;
 
     @GetMapping()
     private List<Genre> show() {
