@@ -14,7 +14,7 @@ public class MovieController {
 
     final MovieService movieService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<Movie> show() {
         return movieService.getAll();
     }
@@ -24,13 +24,13 @@ public class MovieController {
         return movieService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private Movie saveMovie(@RequestBody Movie movie) {
         movieService.create(movie);
         return movie;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private Movie update(@RequestBody Movie movie) {
         movieService.update(movie);
         return movie;

@@ -14,7 +14,7 @@ public class UserMovieController {
 
     final UserMovieService userMovieService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<UserMovie> show() {
         return userMovieService.getAll();
     }
@@ -24,13 +24,13 @@ public class UserMovieController {
         return userMovieService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private UserMovie saveUserMovie(@RequestBody UserMovie userMovie) {
         userMovieService.create(userMovie);
         return userMovie;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private UserMovie update(@RequestBody UserMovie userMovie) {
         userMovieService.update(userMovie);
         return userMovie;

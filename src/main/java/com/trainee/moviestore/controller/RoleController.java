@@ -14,7 +14,7 @@ public class RoleController {
 
     final RoleService roleService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<Role> show() {
         return roleService.getAll();
     }
@@ -24,13 +24,13 @@ public class RoleController {
         return roleService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private Role saveRole(@RequestBody Role role) {
         roleService.create(role);
         return role;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private Role update(@RequestBody Role role) {
         roleService.update(role);
         return role;

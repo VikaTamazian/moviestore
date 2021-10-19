@@ -14,7 +14,7 @@ public class GenreController {
 
     final GenreService genreService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<Genre> show() {
         return genreService.getAll();
     }
@@ -24,13 +24,13 @@ public class GenreController {
         return genreService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private Genre saveGenre(@RequestBody Genre genre) {
         genreService.create(genre);
         return genre;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private Genre update(@RequestBody Genre genre) {
         genreService.update(genre);
         return genre;

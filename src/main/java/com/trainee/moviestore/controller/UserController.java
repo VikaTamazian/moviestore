@@ -14,7 +14,7 @@ public class UserController {
 
     final UserService userService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<User> show() {
         return userService.getAll();
     }
@@ -24,13 +24,13 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private User saveUser(@RequestBody User user) {
         userService.create(user);
         return user;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private User update(@RequestBody User user) {
         userService.update(user);
         return user;

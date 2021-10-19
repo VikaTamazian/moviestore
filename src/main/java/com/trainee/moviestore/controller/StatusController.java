@@ -15,7 +15,7 @@ public class StatusController {
 
     final StatusService statusService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<Status> show() {
         return statusService.getAll();
     }
@@ -25,13 +25,13 @@ public class StatusController {
         return statusService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private Status saveStatus(@RequestBody Status status) {
         statusService.create(status);
         return status;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private Status update(@RequestBody Status status) {
         statusService.update(status);
         return status;

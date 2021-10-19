@@ -14,7 +14,7 @@ public class ProfileController {
 
     final ProfileService profileService;
 
-    @GetMapping("/")
+    @GetMapping()
     private List<Profile> show() {
         return profileService.getAll();
     }
@@ -24,13 +24,13 @@ public class ProfileController {
         return profileService.findById(id);
     }
 
-    @PostMapping("/")
+    @PostMapping()
     private Profile saveProfile(@RequestBody Profile profile) {
         profileService.create(profile);
         return profile;
     }
 
-    @PutMapping("/")
+    @PutMapping()
     private Profile update(@RequestBody Profile profile) {
         profileService.update(profile);
         return profile;
