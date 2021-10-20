@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -27,15 +26,18 @@ class MovieServiceTest {
 
     @Test
     void createTest() {
-        Movie movie = new Movie();
+        Movie movie = createNew();
         when(movieRepository.save(any(Movie.class))).thenReturn(movie);
-        assertNotNull(movieService.create(movie));
+        var movieCreated = movieService.create(movie);
+        assertNotNull(movieCreated);
+        assertEquals(movie, movieCreated);
+        assertSame(movie, movieCreated);
         verify(movieRepository, times(1)).save(movie);
     }
 
     @Test
     void findByIdTest() {
-        Movie movie = new Movie();
+        Movie movie = createNew();
         when(movieRepository.findById(any(Long.class))).thenReturn(Optional.of(movie));
         assertEquals(movie, movieService.findById(anyLong()));
         verify(movieRepository, times(1)).findById(anyLong());
@@ -44,17 +46,20 @@ class MovieServiceTest {
 
     @Test
     void getAllTest() {
-        Movie movie1 = new Movie();
-        Movie movie2 = new Movie();
+        Movie movie1 = createNew();
+        Movie movie2 = createNew();
         List<Movie> movies = Arrays.asList(movie1, movie2);
         when(movieRepository.findAll()).thenReturn(movies);
-        assertEquals(2, movieService.getAll().size());
+        var movieList = movieService.getAll();
+        assertEquals(2, movieList.size());
+        assertEquals(movies, movieList);
+        assertSame(movies, movieList);
         verify(movieRepository, times(1)).findAll();
     }
 
     @Test
     void updateTest() {
-        Movie movie = new Movie();
+        Movie movie = createNew();
         when(movieRepository.save(any(Movie.class))).thenReturn(movie);
         assertEquals(movie, movieService.update(movie));
         verify(movieRepository, times(1)).save(movie);
@@ -67,6 +72,17 @@ class MovieServiceTest {
         movieService.delete(id);
         verify(movieRepository, times(1)).deleteById(id);
 
+    }
+
+    private Movie createNew() {
+        Movie movie = new Movie();
+        movie.setId(1L);
+        movie.setAdult(true);
+        movie.setBackdropPath("url");
+        movie.setLanguage("en");
+        movie.setTitle("title");
+        movie.setOverview("overview");
+        return movie;
     }
 
 }

@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -29,9 +28,11 @@ class GenreServiceTest {
     void createTest() {
         Genre genre = createNew();
         when(genreRepository.save(any(Genre.class))).thenReturn(genre);
-        assertNotNull(genreService.create(genre));
-        assertEquals(genre, genreService.create(genre));
-        verify(genreRepository, times(2)).save(genre);
+        var genreCreated = genreService.create(genre);
+        assertNotNull(genreCreated);
+        assertEquals(genre, genreCreated);
+        assertSame(genre, genreCreated);
+        verify(genreRepository, times(1)).save(genre);
     }
 
     @Test
@@ -49,9 +50,11 @@ class GenreServiceTest {
         Genre genre2 = createNew();
         List<Genre> genres = Arrays.asList(genre1, genre2);
         when(genreRepository.findAll()).thenReturn(genres);
-        assertEquals(2, genreService.getAll().size());
-        assertEquals(genres, genreService.getAll());
-        verify(genreRepository, times(2)).findAll();
+        var genreList = genreService.getAll();
+        assertEquals(2, genreList.size());
+        assertEquals(genres, genreList);
+        assertSame(genres, genreList);
+        verify(genreRepository, times(1)).findAll();
     }
 
     @Test
@@ -75,7 +78,7 @@ class GenreServiceTest {
         Genre genre = new Genre();
         genre.setId(1L);
         genre.setName("somename");
-        genre.setExternal_id(2L);
+        genre.setExternalId(2L);
         return genre;
     }
 
