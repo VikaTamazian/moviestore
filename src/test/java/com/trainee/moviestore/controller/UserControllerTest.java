@@ -67,7 +67,7 @@ public class UserControllerTest {
                 .content(new ObjectMapper().writeValueAsString(user))
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8"))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.username").value("NewUser"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.password").value("User_Password"))
