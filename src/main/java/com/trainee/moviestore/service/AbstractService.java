@@ -1,11 +1,15 @@
 package com.trainee.moviestore.service;
 
+import org.apache.commons.lang3.NotImplementedException;
+
 import java.util.List;
 
 public interface AbstractService<T, V> {
     T create(T model);
 
-    List<T> getAll();
+    default List<T> getAll() {
+        throw new NotImplementedException();
+    }
 
     T findById(V value);
 

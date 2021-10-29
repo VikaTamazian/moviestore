@@ -27,11 +27,13 @@ public class ProfileService implements AbstractService<Profile, Long> {
         return profileRepository.findAll();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Profile findById(Long value) {
         return profileRepository.findById(value).get();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Profile update(Profile model) {
         return profileRepository.save(model);

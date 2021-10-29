@@ -14,32 +14,28 @@ public class MovieController {
 
     final MovieService movieService;
 
-    @GetMapping()
-    private List<Movie> show() {
+    @GetMapping
+    private List<Movie> getAll() {
         return movieService.getAll();
     }
 
     @GetMapping("/{id}")
-    private Movie getMovie(@PathVariable("id") long id) {
+    private Movie get(@PathVariable("id") long id) {
         return movieService.findById(id);
     }
 
-    @PostMapping()
-    private Movie saveMovie(@RequestBody Movie movie) {
-        movieService.create(movie);
-        return movie;
+    @PostMapping
+    private Movie create(@RequestBody Movie movie) {
+        return movieService.create(movie);
     }
 
-    @PutMapping()
+    @PutMapping
     private Movie update(@RequestBody Movie movie) {
-        movieService.update(movie);
-        return movie;
+        return movieService.update(movie);
     }
 
     @DeleteMapping("/{id}")
-    private void deleteMovie(@PathVariable("id") long id) {
+    private void delete(@PathVariable("id") long id) {
         movieService.delete(id);
     }
-
-
 }

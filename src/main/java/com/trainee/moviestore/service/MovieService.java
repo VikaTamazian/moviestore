@@ -27,11 +27,13 @@ public class MovieService implements AbstractService<Movie, Long> {
         return movieRepository.findAll();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Movie findById(Long value) {
         return movieRepository.findById(value).get();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Movie update(Movie model) {
         return movieRepository.save(model);

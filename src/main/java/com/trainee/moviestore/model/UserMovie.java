@@ -36,7 +36,11 @@ public class UserMovie {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "status_id")
+    @Enumerated
     private Status status;
+
+    @PreUpdate
+    private void preUpdate() {
+        updated = LocalDateTime.now();
+    }
 }

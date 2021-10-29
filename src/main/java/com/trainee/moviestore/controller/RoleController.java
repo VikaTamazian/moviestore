@@ -14,7 +14,7 @@ public class RoleController {
 
     final RoleService roleService;
 
-    @GetMapping()
+    @GetMapping
     private List<Role> show() {
         return roleService.getAll();
     }
@@ -24,22 +24,18 @@ public class RoleController {
         return roleService.findById(id);
     }
 
-    @PostMapping()
+    @PostMapping
     private Role saveRole(@RequestBody Role role) {
-        roleService.create(role);
-        return role;
+        return roleService.create(role);
     }
 
-    @PutMapping()
+    @PutMapping
     private Role update(@RequestBody Role role) {
-        roleService.update(role);
-        return role;
+        return roleService.update(role);
     }
 
     @DeleteMapping("/{id}")
-    private void deleteRole(@PathVariable("id") long id) {
+    private void delete(@PathVariable("id") long id) {
         roleService.delete(id);
     }
-
-
 }

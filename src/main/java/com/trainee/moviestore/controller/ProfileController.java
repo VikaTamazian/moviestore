@@ -14,32 +14,28 @@ public class ProfileController {
 
     final ProfileService profileService;
 
-    @GetMapping()
-    private List<Profile> show() {
+    @GetMapping
+    private List<Profile> getAll() {
         return profileService.getAll();
     }
 
     @GetMapping("/{id}")
-    private Profile getProfile(@PathVariable("id") long id) {
+    private Profile get(@PathVariable("id") long id) {
         return profileService.findById(id);
     }
 
-    @PostMapping()
-    private Profile saveProfile(@RequestBody Profile profile) {
-        profileService.create(profile);
-        return profile;
+    @PostMapping
+    private Profile save(@RequestBody Profile profile) {
+        return profileService.create(profile);
     }
 
-    @PutMapping()
+    @PutMapping
     private Profile update(@RequestBody Profile profile) {
-        profileService.update(profile);
-        return profile;
+        return profileService.update(profile);
     }
 
     @DeleteMapping("/{id}")
-    private void deleteProfile(@PathVariable("id") long id) {
+    private void delete(@PathVariable("id") long id) {
         profileService.delete(id);
     }
-
-
 }

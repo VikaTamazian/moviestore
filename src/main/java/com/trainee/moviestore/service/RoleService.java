@@ -27,11 +27,13 @@ public class RoleService implements AbstractService<Role, Long> {
         return roleRepository.findAll();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Role findById(Long value) {
         return roleRepository.findById(value).get();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Role update(Role model) {
         return roleRepository.save(model);

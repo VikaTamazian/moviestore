@@ -27,11 +27,13 @@ public class GenreService implements AbstractService<Genre, Long> {
         return genreRepository.findAll();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Genre findById(Long value) {
         return genreRepository.findById(value).get();
     }
 
+    //TODO update as in UserMovieService
     @Override
     public Genre update(Genre model) {
         return genreRepository.save(model);

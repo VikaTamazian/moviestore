@@ -1,5 +1,6 @@
 package com.trainee.moviestore.service;
 
+import com.trainee.moviestore.exception.MoviestoreServiceException;
 import com.trainee.moviestore.model.User;
 import com.trainee.moviestore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,11 @@ public class UserService implements AbstractService<User, Long> {
 
     @Override
     public User findById(Long value) {
-        return userRepository.findById(value).get();
+        return userRepository.findById(value)
+                .orElseThrow(() -> new MoviestoreServiceException(String.format("User with id: %s not exist", value)));
     }
 
+    //TODO update as in UserMovieService
     @Override
     public User update(User model) {
         return userRepository.save(model);
