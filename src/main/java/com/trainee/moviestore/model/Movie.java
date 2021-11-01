@@ -38,6 +38,9 @@ public class Movie {
     @Column(name = "overview")
     private String overview;
 
+    @Column(name = "external_id")
+    private long externalId;
+
     @OneToMany(mappedBy = "movie")
     private Set<UserMovie> userMovies;
 
