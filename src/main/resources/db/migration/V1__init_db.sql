@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS movies(
     genre INTEGER  NOT NULL,
     language VARCHAR (45) ,
     title TEXT ,
-    overview TEXT
+    overview TEXT,
+    external_id BIGINT
 );
 
 ALTER TABLE movies ADD CONSTRAINT pk_movie PRIMARY KEY (id);
