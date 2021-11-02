@@ -3,7 +3,6 @@ package com.trainee.moviestore.controller;
 import com.trainee.moviestore.model.Genre;
 import com.trainee.moviestore.service.GenreService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,32 +13,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreController {
 
-    @Autowired
     private final GenreService genreService;
 
     @GetMapping
-    private List<Genre> getAll() {
+    public List<Genre> getAll() {
         return genreService.getAll();
     }
 
     @GetMapping("/{id}")
-    private Genre get(@PathVariable("id") long id) {
+    public Genre get(@PathVariable("id") long id) {
         return genreService.findById(id);
     }
 
     @PostMapping
-    private Genre save(@RequestBody Genre genre) {
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public Genre save(@RequestBody Genre genre) {
         return genreService.create(genre);
     }
 
     @PutMapping
     @PreAuthorize("hasRole('ADMIN')")
-    private Genre update(@RequestBody Genre genre) {
+    public Genre update(@RequestBody Genre genre) {
         return genreService.update(genre);
     }
 
     @DeleteMapping("/{id}")
-    private void delete(@PathVariable("id") long id) {
+    @PreAuthorize("hasRole('ADMIN')")
+    public void delete(@PathVariable("id") long id) {
         genreService.delete(id);
     }
 }
