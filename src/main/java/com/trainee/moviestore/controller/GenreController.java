@@ -3,6 +3,8 @@ package com.trainee.moviestore.controller;
 import com.trainee.moviestore.model.Genre;
 import com.trainee.moviestore.service.GenreService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GenreController {
 
+    @Autowired
     private final GenreService genreService;
 
     @GetMapping
@@ -30,6 +33,7 @@ public class GenreController {
     }
 
     @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
     private Genre update(@RequestBody Genre genre) {
         return genreService.update(genre);
     }
