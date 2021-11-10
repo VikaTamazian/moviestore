@@ -4,20 +4,25 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.trainee.moviestore.model.Genre;
 import com.trainee.moviestore.model.Movie;
-import com.trainee.moviestore.repository.GenreRepository;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
+/**
+ * Implementation of a data transfer object designed to convert json
+ * and further save it to the database.
+ *
+ * @version 1.0
+ * @autor Ilkevich Anastasiya
+ */
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieDto {
+public class MovieSaveTmdbDto {
 
-    GenreRepository genreRepository;
-
-    private long id;
+    @JsonProperty("id")
+    private long externalId;
     private String adult;
     @JsonProperty("poster_path")
     private String backdropPath;
@@ -28,46 +33,45 @@ public class MovieDto {
     private String title;
     private String overview;
 
-
-    public Movie toMovie() {
+    public Movie toMovie(MovieSaveTmdbDto movieSaveTmdbDto) {
 
         Movie movie = new Movie();
+        Genre genre = new Genre();
+        List<Genre> genreList = new ArrayList<>();
+
+        for (Long id : movieSaveTmdbDto.genreIds) {
+            genre.setExternalId(id);
+            genreList.add(genre);
+        }
+
         movie.setAdult(Boolean.parseBoolean(getAdult()));
         movie.setBackdropPath(getBackdropPath());
         movie.setLanguage(getLanguage());
         movie.setTitle(getTitle());
         movie.setOverview(getOverview());
-        movie.setExternalId(getId());
-        movie.setGenres(getGenresList(genreIds));
+        movie.setExternalId(getExternalId());
+        movie.setGenres(genreList);
         return movie;
     }
 
-    public MovieDto fromUser(Movie movie) {
+    public MovieSaveTmdbDto fromUser(Movie movie) {
 
-        MovieDto movieDto = new MovieDto();
+        MovieSaveTmdbDto movieDto = new MovieSaveTmdbDto();
+        List<Long> genreIdsList = new ArrayList<>();
+        Long id = null;
+
+        for (Genre genre : movie.getGenres()) {
+            id = genre.getExternalId();
+            genreIdsList.add(id);
+        }
+
         movieDto.setAdult(String.valueOf(movie.isAdult()));
         movieDto.setBackdropPath(movie.getBackdropPath());
         movieDto.setLanguage(movie.getLanguage());
         movieDto.setTitle(movie.getTitle());
         movieDto.setOverview(movie.getOverview());
-        movieDto.setId(movie.getExternalId());
-        movieDto.setGenreIds(getGenresId(movie.getGenres()));
+        movieDto.setExternalId(movie.getExternalId());
+        movieDto.setGenreIds(genreIds);
         return movieDto;
     }
-
-    public List<Genre> getGenresList(List<Long> genreIds) {
-
-        List<Genre> genres = new ArrayList<>();
-        genreIds.forEach(o -> {
-            Genre genre = genreRepository.findByExternalId(o);
-            genres.add(genre);
-        });
-        return genres;
-    }
-
-    public List<Long> getGenresId(List<Genre> genres) {
-
-        return genres.stream().map(Genre::getId).collect(Collectors.toList());
-    }
-
 }
