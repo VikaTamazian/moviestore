@@ -2,36 +2,34 @@ package com.trainee.moviestore.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.trainee.moviestore.model.Role;
-import com.trainee.moviestore.model.User;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import java.util.Set;
+
+/**
+ * Implementation of a data transfer object for updating in the database
+ *
+ * @version 1.0
+ * @autor Ilkevich Anastasiya
+ */
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-@NoArgsConstructor
-public class RoleDto {
+public class RoleUpdateDto {
 
     private long id;
     private String name;
-    private Set<User> users;
 
     public Role toRole() {
-
         Role role = new Role();
         role.setId(id);
         role.setName(name);
-        role.setUsers(users);
         return role;
     }
 
-    public RoleDto fromRole(Role role) {
-
-        RoleDto roleDto = new RoleDto();
+    public RoleUpdateDto fromRole(Role role) {
+        RoleUpdateDto roleDto = new RoleUpdateDto();
         roleDto.setId(role.getId());
         roleDto.setName(role.getName());
-        roleDto.setUsers(role.getUsers());
         return roleDto;
     }
 }
