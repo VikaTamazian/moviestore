@@ -18,7 +18,7 @@ public class Genre {
     private String name;
 
     @Column(name = "external_id")
-    private long external_id;
+    private long externalId;
 
     @ManyToMany(mappedBy = "genres")
     private List<Movie> movies;
