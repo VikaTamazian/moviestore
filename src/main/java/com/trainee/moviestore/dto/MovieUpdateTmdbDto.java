@@ -55,26 +55,5 @@ public class MovieUpdateTmdbDto {
         return movie;
     }
 
-    public MovieUpdateTmdbDto fromUser(Movie movie) {
-
-        List<GenreSaveTmdbDto> genreList = new ArrayList<>();
-        GenreSaveTmdbDto genreDto = new GenreSaveTmdbDto();
-
-        for (Genre genre : movie.getGenres()) {
-            genreDto.setName(genre.getName());
-            genreDto.setExternalId(genre.getExternalId());
-            genreList.add(genreDto);
-        }
-
-        MovieUpdateTmdbDto movieDto = new MovieUpdateTmdbDto();
-        movieDto.setExternalId(movie.getExternalId());
-        movieDto.setAdult(String.valueOf(movie.isAdult()));
-        movieDto.setBackdropPath(movie.getBackdropPath());
-        movieDto.setGenres(genreList);
-        movieDto.setLanguage(movie.getLanguage());
-        movieDto.setTitle(movie.getTitle());
-        movieDto.setOverview(movie.getOverview());
-        return movieDto;
-    }
 }
 

@@ -22,21 +22,10 @@ public class GenreSaveTmdbDto {
     private String name;
 
     public Genre toGenre() {
-
         Genre genre = new Genre();
         genre.setName(getName());
         genre.setExternalId(getExternalId());
-
         return genre;
-    }
-
-    public GenreSaveTmdbDto fromGenre(Genre genre) {
-
-        GenreSaveTmdbDto genreDto = new GenreSaveTmdbDto();
-        genreDto.setName(genre.getName());
-        genreDto.setExternalId(genre.getExternalId());
-
-        return genreDto;
     }
 
 }
