@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import java.net.URISyntaxException;
 
 @Service
-public class TheMoviedbService {
+public class TmdbBuildURIService {
 
     @Value("${tmdb.api.url}")
     private String tmdbApiUrl;
@@ -16,8 +16,6 @@ public class TheMoviedbService {
     private String tmdbGenres;
     @Value("${tmdb.api.path.search.titele}")
     private String tmdbMovies;
-    @Value("${tmdb.api.path.search.id}")
-    private String tmdbMovieById;
     @Value("${tmdb.language}")
     private String tmdbLanguage;
 
@@ -43,12 +41,4 @@ public class TheMoviedbService {
         return uriBuilder.build().toString();
     }
 
-    public String createMovieSearchByIdUrlBuilder(Long id) throws URISyntaxException {
-
-        URIBuilder uriBuilder = new URIBuilder(tmdbApiUrl + tmdbMovieById + id);
-        uriBuilder.addParameter(API_KEY, tmdbApiKey);
-        uriBuilder.addParameter(LANGUAGE, tmdbLanguage);
-        System.out.println(uriBuilder.build().toString());
-        return uriBuilder.build().toString();
-    }
 }
