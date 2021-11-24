@@ -1,5 +1,8 @@
 package com.trainee.moviestore.controller;
 
+import com.trainee.moviestore.dto.UserMovieDto;
+import com.trainee.moviestore.mapper.UserMovieMapper;
+import com.trainee.moviestore.model.Status;
 import com.trainee.moviestore.model.UserMovie;
 import com.trainee.moviestore.service.UserMovieService;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +15,31 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserMovieController {
 
-    final UserMovieService userMovieService;
+    private final UserMovieService userMovieService;
 
     @GetMapping
-    private List<UserMovie> getAll(@RequestParam ("userId") Long userId) {
+    private List<UserMovie> getAll(@RequestParam("userId") Long userId) {
         return userMovieService.getAllByUser(userId);
+    }
+
+    @GetMapping("/description")
+    private UserMovieDto getAllByDescription(@RequestParam("description") String description) {
+
+        List<UserMovie> allByDescription = userMovieService.getAllByDescription(description);
+        return UserMovieMapper.INSTANCE.toDto(allByDescription);
+    }
+
+    @GetMapping("/rating")
+    private UserMovieDto getAllByRating(@RequestParam("rating") Integer rating) {
+
+        List<UserMovie> allByRating = userMovieService.getAllByRating(rating);
+        return UserMovieMapper.INSTANCE.toDto(allByRating);
+    }
+
+    @GetMapping("/status")
+    private UserMovieDto getAllByStatus(@RequestParam("status") Status status) {
+        List<UserMovie> allByStatus = userMovieService.getAllByStatus(status);
+        return UserMovieMapper.INSTANCE.toDto(allByStatus);
     }
 
     @GetMapping("/{id}")
