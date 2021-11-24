@@ -57,24 +57,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Bean
-//    @Override
-//    public UserDetailsService userDetailsService() {
-//        return new InMemoryUserDetailsManager(
-//                User.builder()
-//                        .username("user")
-//                        .password(passwordEncoder().encode("user"))
-//                        .roles("USER")
-//                        .build(),
-//                User.builder()
-//                        .username("admin")
-//                        .password(passwordEncoder().encode("admin"))
-//                        .roles("ADMIN")
-//                        .build()
-//        );
-//
-//    }
-
     @Bean
     protected PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(12);
