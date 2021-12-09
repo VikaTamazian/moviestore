@@ -1,6 +1,7 @@
 package com.trainee.moviestore.service;
 
 import com.trainee.moviestore.exception.MoviestoreServiceException;
+import com.trainee.moviestore.model.Status;
 import com.trainee.moviestore.model.UserMovie;
 import com.trainee.moviestore.repository.UserMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class UserMovieService implements AbstractService<UserMovie, Long> {
 
     @Autowired
     public UserMovieService(UserMovieRepository userMovieRepository) {
+
         this.userMovieRepository = userMovieRepository;
     }
 
@@ -27,6 +29,18 @@ public class UserMovieService implements AbstractService<UserMovie, Long> {
 
     public List<UserMovie> getAllByUser(Long userId) {
         return userMovieRepository.findAllByUserId(userId);
+    }
+
+    public List<UserMovie> getAllByDescription(String description) {
+        return userMovieRepository.findAllByDescription(description);
+    }
+
+    public List<UserMovie> getAllByRating(Integer rating) {
+        return userMovieRepository.findAllByRating(rating);
+    }
+
+    public List<UserMovie> getAllByStatus(Status status) {
+        return userMovieRepository.findAllByStatus(status);
     }
 
     @Override
